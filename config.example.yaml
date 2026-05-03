@@ -1,0 +1,24 @@
+# Public dufs config — anon read, auth-required write, listing hidden by stub.
+# Generated from this template by ./setup.sh (placeholders replaced from .env).
+
+serve-path: /data/public
+bind:
+  - 0.0.0.0
+port: 5000
+
+allow-upload: true
+allow-delete: true
+allow-search: false
+allow-symlink: false
+render-try-index: true
+
+hidden:
+  - '.*'
+  - '*.env'
+  - '*.key'
+
+auth:
+  - '__ADMIN_USER__:__ADMIN_HASH__@/:rw'
+  - '@/'
+
+log-format: '$remote_addr "$request" $status'

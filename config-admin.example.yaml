@@ -1,0 +1,23 @@
+# Admin dufs config — auth-required everywhere, full UI, NEVER expose publicly.
+# Generated from this template by ./setup.sh.
+
+serve-path: /data/public
+bind:
+  - 0.0.0.0
+port: 5000
+
+allow-upload: true
+allow-delete: true
+allow-search: true
+allow-symlink: false
+allow-archive: true
+
+hidden:
+  - '.*'
+  - '*.env'
+  - '*.key'
+
+auth:
+  - '__ADMIN_USER__:__ADMIN_HASH__@/:rw'
+
+log-format: '$remote_addr "$request" $status'

@@ -1,0 +1,32 @@
+services:
+  dufs:
+    image: sigoden/dufs:latest
+    container_name: dufs
+    restart: unless-stopped
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "127.0.0.1:${PUBLIC_PORT:-5001}:5000"
+    volumes:
+      - ./data:/data
+      - ./config.yaml:/config.yaml:ro
+    command: ["--config", "/config.yaml"]
+
+  dufs-admin:
+    image: sigoden/dufs:latest
+    container_name: dufs-admin
+    restart: unless-stopped
+    user: "${HOST_UID:-1000}:${HOST_GID:-1000}"
+    read_only: true
+    cap_drop: ["ALL"]
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - "127.0.0.1:${ADMIN_PORT:-5002}:5000"
+    volumes:
+      - ./data:/data
+      - ./config-admin.yaml:/config.yaml:ro
+    command: ["--config", "/config.yaml"]

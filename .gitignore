@@ -1,0 +1,20 @@
+# secrets / generated configs
+.env
+.env.local
+config.yaml
+config-admin.yaml
+
+# user data — keep dir tree but ignore contents
+data/*
+!data/.gitkeep
+
+# os / editor
+.DS_Store
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# backups
+*.bak
+*.original.md
